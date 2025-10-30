@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+
+/* Prevent scroll during hero animations */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Utility: modern geometric sans for sleek headings/taglines */
+.font-outfit {
+  font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.45;
+    transform: translateY(0) scale(1);
+    filter: blur(36px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-4px) scale(1.06);
+    filter: blur(48px);
+  }
+  100% {
+    opacity: 0.45;
+    transform: translateY(0) scale(1);
+    filter: blur(36px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .before\:animate-\[glow_14s_ease-in-out_infinite\]::before {
+    animation: none !important;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out 0.5s both;
+}
+
+/* Divider shimmer animation */
+@keyframes divider-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-divider {
+  background-size: 200% 100%;
+  animation: divider-shimmer 6s ease-in-out infinite;
+}
+
+/* Divider width pulse (wider → skinnier → wider) */
+@keyframes divider-width-pulse {
+  0% {
+    transform: scaleX(1.15);
+  }
+  50% {
+    transform: scaleX(0.55);
+  }
+  100% {
+    transform: scaleX(1.15);
+  }
+}
+
+.animate-divider-width {
+  transform-origin: center;
+  animation: divider-width-pulse 5.5s ease-in-out infinite;
+}
+
+/* Sporadic fade for the bottom "Defying electric" text */
+@keyframes ghost-fade {
+  0%, 55% {
+    opacity: 0;
+    transform: translateX(-1%);
+  }
+  65%, 80% {
+    opacity: 0.22;
+    transform: translateX(0%);
+  }
+  90%, 100% {
+    opacity: 0;
+    transform: translateX(1%);
+  }
+}
+
+.animate-ghost-fade {
+  animation: ghost-fade 10s ease-in-out infinite;
+}
+
+/* Slow size pulse for the section's before: radial gradient */
+@keyframes bgPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .before\:animate-\[bgPulse_12s_ease-in-out_infinite\]::before {
+    animation: none !important;
+  }
+}
+
+/* Intro fades from nothing to target opacities */
+@keyframes introTo30 {
+  from { opacity: 0; }
+  to { opacity: 0.3; }
+}
+.animate-intro-30 { animation: introTo30 2s ease-out forwards; }
+
+@keyframes introTo70 {
+  from { opacity: 0; }
+  to { opacity: 0.7; }
+}
+.animate-intro-70 { animation: introTo70 2s ease-out forwards; }
+
+@keyframes introBefore {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 0.7; transform: scale(1); }
+}
+.before\:animate-introBefore::before { animation: introBefore 2s ease-out forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-intro-30, .animate-intro-70, .before\:animate-introBefore::before {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Logo glow appears after load (logo stays visible) */
+@keyframes logoGlowIntro {
+  0% { filter: none; }
+  100% { filter: drop-shadow(0 0 28px rgba(34,211,238,0.55)); }
+}
+.logo-glow-intro { animation: logoGlowIntro 4s ease-out 600ms forwards; }
+
+/* Background color returns from pure black to original tone */
+@keyframes bgIntro {
+  from { background-color: #000; }
+  to { background-color: #0a0f1e; }
+}
+.bg-intro { animation: bgIntro 2s ease-out forwards; }
+
+/* Intro flicker: exactly 3 prominent pulses, then settle */
+@keyframes flicker {
+  0% { opacity: 0; filter: brightness(0.8); }
+  /* Pulse 1 */
+  8% { opacity: 1; filter: brightness(1.6); }
+  16% { opacity: 0.25; filter: brightness(0.7); }
+  /* Pulse 2 */
+  28% { opacity: 1; filter: brightness(1.6); }
+  36% { opacity: 0.25; filter: brightness(0.7); }
+  /* Pulse 3 */
+  48% { opacity: 1; filter: brightness(1.6); }
+  58% { opacity: 0.35; filter: brightness(0.85); }
+  /* Settle */
+  100% { opacity: 1; filter: brightness(1); }
+}
+.animate-flicker { animation: flicker 1.8s ease-out both; }
+.before\:animate-flicker::before { animation: flicker 1.8s ease-out both; }
