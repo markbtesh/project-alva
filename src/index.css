@@ -4,11 +4,59 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
 
-/* Prevent scroll during hero animations */
+/* Allow scroll for multi-section page */
 html, body {
-  height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   overscroll-behavior: none;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 30, 30, 0.8);
+  border-left: 1px solid rgba(60, 220, 220, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, 
+    rgba(60, 220, 220, 0.6), 
+    rgba(150, 255, 150, 0.6)
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(60, 220, 220, 0.3);
+  box-shadow: 
+    0 0 10px rgba(60, 220, 220, 0.4),
+    inset 0 0 5px rgba(150, 255, 150, 0.2);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, 
+    rgba(60, 220, 220, 0.9), 
+    rgba(150, 255, 150, 0.9)
+  );
+  box-shadow: 
+    0 0 20px rgba(60, 220, 220, 0.6),
+    inset 0 0 8px rgba(150, 255, 150, 0.3);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to bottom, 
+    rgba(60, 220, 220, 1), 
+    rgba(150, 255, 150, 1)
+  );
+  box-shadow: 
+    0 0 25px rgba(60, 220, 220, 0.8),
+    inset 0 0 10px rgba(150, 255, 150, 0.4);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(60, 220, 220, 0.6) rgba(10, 30, 30, 0.8);
 }
 
 /* Utility: modern geometric sans for sleek headings/taglines */
@@ -161,14 +209,14 @@ html, body {
 /* Logo glow appears after load (logo stays visible) */
 @keyframes logoGlowIntro {
   0% { filter: none; }
-  100% { filter: drop-shadow(0 0 28px rgba(34,211,238,0.55)); }
+  100% { filter: drop-shadow(0 0 28px rgba(60,220,220,0.55)); }
 }
 .logo-glow-intro { animation: logoGlowIntro 4s ease-out 600ms forwards; }
 
 /* Background color returns from pure black to original tone */
 @keyframes bgIntro {
   from { background-color: #000; }
-  to { background-color: #0a0f1e; }
+  to { background-color: #0A1E1E; }
 }
 .bg-intro { animation: bgIntro 2s ease-out forwards; }
 
@@ -189,3 +237,48 @@ html, body {
 }
 .animate-flicker { animation: flicker 1.8s ease-out both; }
 .before\:animate-flicker::before { animation: flicker 1.8s ease-out both; }
+
+/* World background image: fade in/out with subtle movement */
+@keyframes worldFloat {
+  0% {
+    opacity: 0.06;
+    transform: translate(0, 0) scale(1);
+    background-position: 50% 50%;
+  }
+  25% {
+    opacity: 0.12;
+    transform: translate(8px, -5px) scale(1.01);
+    background-position: 52% 48%;
+  }
+  50% {
+    opacity: 0.08;
+    transform: translate(-5px, 8px) scale(0.99);
+    background-position: 48% 52%;
+  }
+  75% {
+    opacity: 0.14;
+    transform: translate(-8px, -3px) scale(1.02);
+    background-position: 49% 51%;
+  }
+  100% {
+    opacity: 0.06;
+    transform: translate(0, 0) scale(1);
+    background-position: 50% 50%;
+  }
+}
+.after\:animate-worldFloat::after {
+  animation: worldFloat 20s ease-in-out infinite;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, 
+    rgba(60, 220, 220, 0.6), 
+    rgba(150, 255, 150, 0.6)
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(60, 220, 220, 0.3);
+  box-shadow: 
+    0 0 10px rgba(60, 220, 220, 0.4),
+    inset 0 0 5px rgba(150, 255, 150, 0.2);
+  transition: all 0.3s ease;
+}
