@@ -71,8 +71,8 @@ function App() {
           </div>
 
           <div className="space-y-4 animate-fade-in scale-x-50 font-outfit">
-            <h1 className="text-[#DFFFDF] text-3xl lg:text-4xl xl:text-5xl scale-x-150 font-regular tracking-[-0.01em] drop-shadow-[0_0_16px_rgba(60,220,220,0.35)]">Power Inc.</h1>
-            <p className="text-[#96FF96] text-xl lg:text-2xl xl:text-[28px] font-light tracking-[0.2em] drop-shadow-[0_0_12px_rgba(150,255,150,0.4)] uppercase scale-x-125">UTILITY OF THE AI ERA</p>
+            <h1 className="text-[#DFFFDF] text-3xl lg:text-4xl xl:text-5xl scale-x-150 font-medium tracking-[-0.01em] drop-shadow-[0_0_16px_rgba(60,220,220,0.35)]">Power Inc.</h1>
+            <p className="text-[#96FF96] text-xl lg:text-2xl xl:text-[28px] font-medium tracking-[0.2em] drop-shadow-[0_0_12px_rgba(150,255,150,0.4)] uppercase scale-x-125">UTILITY OF THE AI ERA</p>
             <div className="h-px w-32 mx-auto bg-gradient-to-r from-transparent via-[#3CDCDC] to-transparent animate-divider-width"></div>
             <p className="text-[#8fd38f] text-sm lg:text-base xl:text-lg tracking-[0.35em] uppercase font-light drop-shadow-[0_0_10px_rgba(60,220,220,0.3)]">
               Next Generation Power Solutions
