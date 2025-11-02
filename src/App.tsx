@@ -54,11 +54,11 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 opacity-0 animate-intro-30"></div>
 
         <div className="absolute inset-0 opacity-0 animate-intro-30 animate-flicker">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#3CDCDC]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#AFFF6E]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#3CDCDC]/10 rounded-full blur-3xl animate-[slowRotate_120s_linear_infinite]" style={{ transformOrigin: 'center center' }}></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#AFFF6E]/10 rounded-full blur-3xl animate-[slowRotate_160s_linear_infinite_reverse]" style={{ transformOrigin: 'center center' }}></div>
         </div>
 
-        <div className="relative z-10 mx-auto w-screen px-6 text-center pb-[92rem] translate-y-60 rounded-t-full scale-x-150 bg-black border-t-2 border-[#DFFFDF]/10 shadow-[0_0_120px_0_rgba(60,220,220,0.15)] before:content-[''] before:absolute before:-inset-x-8 before:-inset-y-14 before:-z-10 before:rounded-t-[9999px] before:bg-[radial-gradient(80%_80%_at_50%_0%,rgba(60,220,220,0.15),rgba(175,255,110,0.08)_45%,transparent_75%)] before:opacity-0 before:blur-3xl before:transform before:animate-[bgPulse_12s_ease-in-out_infinite] before:animate-introBefore before:animate-flicker after:content-[''] after:absolute after:inset-0 after:bg-[url('/world.png')] after:bg-cover after:bg-center after:-z-20 after:rounded-t-full after:animate-worldFloat">
+        <div className="relative z-10 mx-auto w-screen px-6 text-center pb-[92rem] translate-y-60 rounded-t-full scale-x-150 bg-black border-t-2 border-[#DFFFDF]/10 shadow-[0_0_120px_0_rgba(60,220,220,0.15)] before:content-[''] before:absolute before:-inset-x-8 before:-inset-y-14 before:-z-10 before:rounded-t-[9999px] before:bg-[radial-gradient(80%_80%_at_50%_0%,rgba(60,220,220,0.15),rgba(175,255,110,0.08)_45%,transparent_75%)] before:opacity-0 before:blur-3xl before:transform before:animate-[bgPulse_120s_linear_infinite] before:animate-introBefore before:animate-flicker before:origin-center after:content-[''] after:absolute after:inset-0 after:bg-[url('/world.png')] after:bg-cover after:bg-center after:-z-20 after:rounded-t-full after:animate-worldFloat">
           <div className="mb-6 transform transition-transform duration-500 mt-28 scale-x-75">
             <div className="relative w-full max-w-md mx-auto">
               <div className="pointer-events-none absolute -inset-8 -z-10 rounded-full blur-3xl opacity-0 animate-intro-70 animate-flicker "></div>
@@ -87,8 +87,8 @@ function App() {
   <div className="absolute bottom-0 left-0 right-0 min-h-screen bg-black py-32 px-6 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#3CDCDC]/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#AFFF6E]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#3CDCDC]/5 rounded-full blur-3xl animate-[slowRotate_120s_linear_infinite]" style={{ transformOrigin: 'center center' }}></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#AFFF6E]/5 rounded-full blur-3xl animate-[slowRotate_160s_linear_infinite_reverse]" style={{ transformOrigin: 'center center' }}></div>
         </div>
 
         <div className="relative z-10 max-w-2xl mx-auto">

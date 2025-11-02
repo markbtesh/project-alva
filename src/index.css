@@ -164,24 +164,21 @@ html, body {
   animation: ghost-fade 10s ease-in-out infinite;
 }
 
-/* Slow size pulse for the section's before: radial gradient */
+/* Slow rotation for the section's before: radial gradient */
 @keyframes bgPulse {
   0% {
-    transform: scale(0.92);
+    transform: rotate(0deg);
     opacity: 0.55;
   }
-  50% {
-    transform: scale(1.08);
-    opacity: 0.85;
-  }
   100% {
-    transform: scale(0.92);
+    transform: rotate(360deg);
     opacity: 0.55;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .before\:animate-\[bgPulse_12s_ease-in-out_infinite\]::before {
+  .before\:animate-\[bgPulse_120s_linear_infinite\]::before,
+  .animate-\[slowRotate.*\] {
     animation: none !important;
   }
 }
@@ -244,34 +241,27 @@ html, body {
 .animate-flicker { animation: flicker 1.8s ease-out both; }
 .before\:animate-flicker::before { animation: flicker 1.8s ease-out both; }
 
-/* World background image: fade in/out with subtle movement */
+/* World background image: slow rotation like a globe */
 @keyframes worldFloat {
   0% {
     opacity: 0.06;
-    transform: translate(0, 0) scale(1);
-    background-position: 50% 50%;
-  }
-  25% {
-    opacity: 0.12;
-    transform: translate(8px, -5px) scale(1.01);
-    background-position: 52% 48%;
-  }
-  50% {
-    opacity: 0.08;
-    transform: translate(-5px, 8px) scale(0.99);
-    background-position: 48% 52%;
-  }
-  75% {
-    opacity: 0.14;
-    transform: translate(-8px, -3px) scale(1.02);
-    background-position: 49% 51%;
+    transform: rotate(0deg);
   }
   100% {
     opacity: 0.06;
-    transform: translate(0, 0) scale(1);
-    background-position: 50% 50%;
+    transform: rotate(360deg);
   }
 }
 .after\:animate-worldFloat::after {
-  animation: worldFloat 20s ease-in-out infinite;
+  animation: worldFloat 240s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes slowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
