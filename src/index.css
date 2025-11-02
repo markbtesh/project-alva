@@ -177,8 +177,10 @@ html, body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .before\:animate-\[bgPulse_120s_linear_infinite\]::before,
-  .animate-\[slowRotate.*\] {
+  .before\:animate-\[bgPulse_120s_linear_infinite\]::before {
+    animation: none !important;
+  }
+  [class*="slowRotate"] {
     animation: none !important;
   }
 }
