@@ -84,7 +84,7 @@ function App() {
 
 
   {/* Contact Form Section */}
-  <div className="absolute bottom-0 left-0 right-0 min-h-screen bg-black py-32 px-6 overflow-hidden">
+  <div className="absolute bottom-0 left-0 right-0 min-h-screen bg-black py-32 px-6 overflow-hidden content-end">
         {/* Background effects */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#3CDCDC]/5 rounded-full blur-3xl animate-[slowRotate_120s_linear_infinite]" style={{ transformOrigin: 'center center' }}></div>
@@ -177,10 +177,12 @@ function App() {
               </div>
             )}
           </form>
+          <p className="text-center absolute -bottom-28 left-0 right-0 text-[#3d3d3d] text-sm font-outfit font-light tracking-wide z-10">
+          All rights reserved.
+        </p>
         </div>
 
-        {/* Bottom border */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3CDCDC]/50 to-transparent"></div>
+       
       </div>
 
 
