@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 function Leadership() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Small delay to ensure smooth fade-in
@@ -14,6 +16,23 @@ function Leadership() {
       clearTimeout(timer);
     };
   }, []);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
   const leaders = [
     {
       name: 'William Clapp',
@@ -60,12 +79,43 @@ function Leadership() {
                 className="h-8 w-auto filter brightness-0"
               />
             </Link>
-            <Link
-              to="/"
-              className="text-gray-700 hover:text-gray-900 font-outfit font-medium transition-colors duration-200"
-            >
-              Home
-            </Link>
+            {/* Toggle Menu Button */}
+            <div className="relative" ref={menuRef}>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 bg-white/50 hover:bg-white/80 hover:border-gray-400 transition-all duration-200"
+                aria-label="Toggle menu"
+              >
+                <svg
+                  className={`w-5 h-5 text-gray-700 transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`}
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {isMenuOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 rounded-lg border border-gray-200 bg-white/95 backdrop-blur-md shadow-lg overflow-hidden menu-fade-in">
+                  <Link
+                    to="/"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-outfit font-medium transition-all duration-200"
+                  >
+                    Home
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>

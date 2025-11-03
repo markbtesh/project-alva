@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +10,25 @@ function Home() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -53,20 +72,44 @@ function Home() {
       {/* Navigation Bar */}
       <nav className="w-full backdrop-blur-sm absolute top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <img
-                src="/alva-white.svg"
-                alt="ALVA logo"
-                className="h-8 w-auto"
-              />
-            </Link>
-            <Link
-              to="/leadership"
-              className="text-[#DFFFDF] hover:text-[#AFFF6E] font-outfit font-medium transition-colors duration-200"
-            >
-              Leadership
-            </Link>
+          <div className="flex items-center justify-end">
+            {/* Toggle Menu Button */}
+            <div className="relative" ref={menuRef}>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#DFFFDF]/20 bg-black/30 hover:bg-black/50 hover:border-[#DFFFDF]/40 transition-all duration-200"
+                aria-label="Toggle menu"
+              >
+                <svg
+                  className={`w-5 h-5 text-[#DFFFDF] transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`}
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {isMenuOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 rounded-lg border border-[#DFFFDF]/20 bg-black/90 backdrop-blur-md shadow-lg overflow-hidden menu-fade-in">
+                  <Link
+                    to="/leadership"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-3 text-[#DFFFDF] hover:text-[#AFFF6E] hover:bg-[#DFFFDF]/10 font-outfit font-medium transition-all duration-200"
+                  >
+                    Leadership
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>
