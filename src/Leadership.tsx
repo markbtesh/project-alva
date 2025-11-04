@@ -55,7 +55,7 @@ function Leadership() {
     {
       name: 'Avi Huberfeld',
       title: 'Chief Financial Officer',
-      image: '/Headshots/profile-placeholder.jpg',
+      image: '/Headshots/avi-h.jpeg',
       bio: 'Former investor at Millennium Management, 9+ years public markets expertise. BS - Yeshiva University.'
     },
     {
@@ -112,6 +112,13 @@ function Leadership() {
                     className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-outfit font-medium transition-all duration-200"
                   >
                     Home
+                  </Link>
+                  <Link
+                    to="/resources"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-outfit font-medium transition-all duration-200 border-t border-gray-200"
+                  >
+                    Resources
                   </Link>
                 </div>
               )}
