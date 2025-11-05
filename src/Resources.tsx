@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, FormEvent } from 'react';
 import articlesData from './articles.json';
 
 interface Article {
@@ -14,11 +14,39 @@ interface Article {
 }
 
 function Resources() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isChecking, setIsChecking] = useState(true);
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [articles, setArticles] = useState<Article[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
   const tradingViewRef = useRef<HTMLDivElement>(null);
+
+  const CORRECT_PASSWORD = 'alva2025';
+
+  // Check authentication status on mount
+  useEffect(() => {
+    const authStatus = sessionStorage.getItem('alva_resources_authenticated');
+    if (authStatus === 'true') {
+      setIsAuthenticated(true);
+    }
+    setIsChecking(false);
+  }, []);
+
+  const handlePasswordSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setPasswordError('');
+    
+    if (password === CORRECT_PASSWORD) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('alva_resources_authenticated', 'true');
+    } else {
+      setPasswordError('Incorrect password. Please try again.');
+      setPassword('');
+    }
+  };
 
   useEffect(() => {
     // Sort articles by date (newest first) and set state
@@ -37,59 +65,144 @@ function Resources() {
 
   // Load TradingView widget
   useEffect(() => {
-    if (tradingViewRef.current) {
-      const script = document.createElement('script');
-      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
-      script.async = true;
-      script.innerHTML = JSON.stringify({
-        colorTheme: 'light',
-        dateRange: '12M',
-        showChart: true,
-        locale: 'en',
-        largeChartUrl: '',
-        isTransparent: false,
-        showSymbolLogo: true,
-        showFloatingTooltip: false,
-        width: '100%',
-        height: 600,
-        plotLineColorGrowing: 'rgba(25, 118, 210, 1)',
-        plotLineColorFalling: 'rgba(25, 118, 210, 1)',
-        gridLineColor: 'rgba(240, 243, 250, 1)',
-        scaleFontColor: 'rgba(120, 123, 134, 1)',
-        belowLineFillColorGrowing: 'rgba(25, 118, 210, 0.12)',
-        belowLineFillColorFalling: 'rgba(25, 118, 210, 0.12)',
-        belowLineFillColorGrowingBottom: 'rgba(25, 118, 210, 0)',
-        belowLineFillColorFallingBottom: 'rgba(25, 118, 210, 0)',
-        symbolActiveColor: 'rgba(33, 150, 243, 0.12)',
-        tabs: [
+    if (!tradingViewRef.current) return;
+
+    const container = tradingViewRef.current;
+    
+    // Clear any existing widget content
+    container.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
+    
+    const script = document.createElement('script');
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      colorTheme: 'light',
+      dateRange: '12M',
+      showChart: true,
+      locale: 'en',
+      largeChartUrl: '',
+      isTransparent: false,
+      showSymbolLogo: true,
+      showFloatingTooltip: false,
+      width: '100%',
+      height: 600,
+      plotLineColorGrowing: 'rgba(25, 118, 210, 1)',
+      plotLineColorFalling: 'rgba(25, 118, 210, 1)',
+      gridLineColor: 'rgba(240, 243, 250, 1)',
+      scaleFontColor: 'rgba(120, 123, 134, 1)',
+      belowLineFillColorGrowing: 'rgba(25, 118, 210, 0.12)',
+      belowLineFillColorFalling: 'rgba(25, 118, 210, 0.12)',
+      belowLineFillColorGrowingBottom: 'rgba(25, 118, 210, 0)',
+      belowLineFillColorFallingBottom: 'rgba(25, 118, 210, 0)',
+      symbolActiveColor: 'rgba(33, 150, 243, 0.12)',
+      tabs: [
+        {
+          title: 'Market',
+          symbols: [
+            { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' },
+            { s: 'FOREXCOM:NSXUSD', d: 'Nasdaq 100' },
+            { s: 'FOREXCOM:DJI', d: 'Dow 30' },
+            { s: 'FOREXCOM:UKXGBP', d: 'UK 100' },
+            { s: 'INDEX:NKY', d: 'Nikkei 225' },
+            { s: 'INDEX:DEU30', d: 'DAX Index' }
+          ],
+          originalTitle: 'Market'
+        },
           {
-            title: 'Indices',
+            title: 'Futures',
             symbols: [
-              { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' },
-              { s: 'FOREXCOM:NSXUSD', d: 'Nasdaq 100' },
-              { s: 'FOREXCOM:DJI', d: 'Dow 30' },
-              { s: 'INDEX:NKY', d: 'Nikkei 225' },
-              { s: 'INDEX:DEU30', d: 'DAX Index' },
-              { s: 'FOREXCOM:UKXGBP', d: 'UK 100' }
+              { s: 'ES1!', d: 'E-Mini S&P 500' },
+              { s: 'NQ1!', d: 'E-Mini Nasdaq' },
+              { s: 'YM1!', d: 'E-Mini Dow' },
+              { s: 'CL1!', d: 'Crude Oil' },
+              { s: 'GC1!', d: 'Gold' },
+              { s: 'NG1!', d: 'Natural Gas' }
             ],
-            originalTitle: 'Indices'
-          }
-         
-        ]
-      });
-
-      const container = tradingViewRef.current;
-      if (container && !container.querySelector('script')) {
-        container.appendChild(script);
-      }
-
-      return () => {
-        // Cleanup
-        if (container && container.contains(script)) {
-          container.removeChild(script);
+            originalTitle: 'Futures'
+          },
+        {
+          title: 'Crypto',
+          symbols: [
+            { s: 'COINBASE:BTCUSD', d: 'Bitcoin' },
+            { s: 'COINBASE:ETHUSD', d: 'Ethereum' },
+            { s: 'BINANCE:BNBUSD', d: 'BNB' },
+            { s: 'COINBASE:SOLUSD', d: 'Solana' },
+            { s: 'COINBASE:ADAUSD', d: 'Cardano' },
+            { s: 'COINBASE:XRPUSD', d: 'Ripple' }
+          ],
+          originalTitle: 'Crypto'
+        },
+        {
+          title: 'EU',
+          symbols: [
+            { s: 'INDEX:DEU30', d: 'DAX Index' },
+            { s: 'INDEX:FR40', d: 'CAC 40' },
+            { s: 'FOREXCOM:UKXGBP', d: 'UK 100' },
+            { s: 'INDEX:IT40', d: 'FTSE MIB' },
+            { s: 'INDEX:ES35', d: 'IBEX 35' },
+            { s: 'INDEX:EU50', d: 'Euro Stoxx 50' }
+          ],
+          originalTitle: 'EU'
+        },
+        {
+          title: 'Asia',
+          symbols: [
+            { s: 'INDEX:NKY', d: 'Nikkei 225' },
+            { s: 'INDEX:SHCOMP', d: 'Shanghai Composite' },
+            { s: 'INDEX:HSI', d: 'Hang Seng' },
+            { s: 'INDEX:AS51', d: 'ASX 200' },
+            { s: 'INDEX:TWII', d: 'Taiwan Weighted' },
+            { s: 'INDEX:KS11', d: 'KOSPI' }
+          ],
+          originalTitle: 'Asia'
+        },
+        {
+          title: 'Forex',
+          symbols: [
+            { s: 'FX:EURUSD', d: 'EUR/USD' },
+            { s: 'FX:GBPUSD', d: 'GBP/USD' },
+            { s: 'FX:USDJPY', d: 'USD/JPY' },
+            { s: 'FX:USDCHF', d: 'USD/CHF' },
+            { s: 'FX:AUDUSD', d: 'AUD/USD' },
+            { s: 'FX:USDCAD', d: 'USD/CAD' }
+          ],
+          originalTitle: 'Forex'
+        },
+          {
+            title: 'Commodities',
+            symbols: [
+              { s: 'OANDA:XAUUSD', d: 'Gold' },
+              { s: 'OANDA:XAGUSD', d: 'Silver' },
+              { s: 'CL1!', d: 'Crude Oil' },
+              { s: 'NG1!', d: 'Natural Gas' },
+              { s: 'ZC1!', d: 'Corn' },
+              { s: 'ZW1!', d: 'Wheat' }
+            ],
+            originalTitle: 'Commodities'
+          },
+        {
+          title: 'Bonds',
+          symbols: [
+            { s: 'CME:GE1!', d: 'Eurodollar' },
+            { s: 'CBOT:ZB1!', d: 'T-Bond' },
+            { s: 'CBOT:UB1!', d: 'Ultra T-Bond' },
+            { s: 'EUREX:FGBL1!', d: 'Euro Bund' },
+            { s: 'EUREX:FBTP1!', d: 'Euro BTP' },
+            { s: 'EUREX:FGBM1!', d: 'Euro BOBL' }
+          ],
+          originalTitle: 'Bonds'
         }
-      };
-    }
+      ]
+    });
+
+    container.appendChild(script);
+
+    return () => {
+      // Cleanup - remove all scripts from container
+      const scripts = container.querySelectorAll('script');
+      scripts.forEach(s => s.remove());
+      container.innerHTML = '';
+    };
   }, []);
 
   // Close menu when clicking outside
@@ -117,6 +230,80 @@ function Resources() {
       day: 'numeric' 
     });
   };
+
+  // Show password gate if not authenticated
+  if (isChecking) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-gray-600 font-outfit">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-6">
+        <div className="max-w-md w-full">
+          <div className="text-center mb-8">
+            <img
+              src="/alva-white.svg"
+              alt="ALVA logo"
+              className="h-12 w-auto mx-auto mb-6"
+            />
+            <h1 className="text-3xl font-bold text-[#DFFFDF] font-outfit mb-2">
+              Protected Resources
+            </h1>
+            <p className="text-gray-400 font-outfit">
+              Please enter the password to access Market Watch
+            </p>
+          </div>
+
+          <form onSubmit={handlePasswordSubmit} className="bg-gray-900/50 backdrop-blur-sm border border-[#DFFFDF]/20 rounded-lg p-8 shadow-xl">
+            <div className="mb-6">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-[#DFFFDF] mb-2 font-outfit"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-black/50 border border-[#DFFFDF]/30 rounded-lg text-[#DFFFDF] font-outfit focus:outline-none focus:ring-2 focus:ring-[#DFFFDF]/50 focus:border-[#DFFFDF]/50 transition-all"
+                placeholder="Enter password"
+                autoFocus
+              />
+            </div>
+
+            {passwordError && (
+              <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-sm font-outfit">
+                {passwordError}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={!password}
+              className="w-full py-3 bg-[#DFFFDF] text-black font-semibold rounded-lg hover:bg-[#AFFF6E] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-outfit"
+            >
+              Enter
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <Link
+              to="/"
+              className="text-gray-400 hover:text-[#DFFFDF] text-sm font-outfit transition-colors"
+            >
+              ← Back to Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`min-h-screen bg-white ${isVisible ? 'page-fade-in' : 'opacity-0'}`}>

@@ -55,7 +55,7 @@ function Leadership() {
     {
       name: 'Avi Huberfeld',
       title: 'Chief Financial Officer',
-      image: '/Headshots/avi-h.jpeg',
+      image: '/Headshots/avi-h.jpg',
       bio: 'Former investor at Millennium Management, 9+ years public markets expertise. BS - Yeshiva University.'
     },
     {
