@@ -117,10 +117,10 @@ function Resources() {
           symbols: [
             { s: 'ES1!', d: 'E-Mini S&P 500' },
             { s: 'NQ1!', d: 'E-Mini Nasdaq' },
-            { s: 'YM1!', d: 'E-Mini Dow' },
+            { s: 'FOREXCOM:DJI', d: 'Dow 30' },
             { s: 'CL1!', d: 'Crude Oil' },
-            { s: 'GC1!', d: 'Gold' },
-            { s: 'NG1!', d: 'Natural Gas' }
+            { s: 'OANDA:XAUUSD', d: 'Gold' },
+            { s: 'OANDA:XAGUSD', d: 'Silver' }
           ],
           originalTitle: 'Futures'
         },
@@ -140,11 +140,11 @@ function Resources() {
           title: 'EU',
           symbols: [
             { s: 'INDEX:DEU30', d: 'DAX Index' },
-            { s: 'INDEX:FR40', d: 'CAC 40' },
             { s: 'FOREXCOM:UKXGBP', d: 'UK 100' },
-            { s: 'INDEX:IT40', d: 'FTSE MIB' },
-            { s: 'INDEX:ES35', d: 'IBEX 35' },
-            { s: 'INDEX:EU50', d: 'Euro Stoxx 50' }
+            { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' },
+            { s: 'FOREXCOM:NSXUSD', d: 'Nasdaq 100' },
+            { s: 'FOREXCOM:DJI', d: 'Dow 30' },
+            { s: 'INDEX:NKY', d: 'Nikkei 225' }
           ],
           originalTitle: 'EU'
         },
@@ -152,11 +152,11 @@ function Resources() {
           title: 'Asia',
           symbols: [
             { s: 'INDEX:NKY', d: 'Nikkei 225' },
-            { s: 'INDEX:SHCOMP', d: 'Shanghai Composite' },
             { s: 'INDEX:HSI', d: 'Hang Seng' },
-            { s: 'INDEX:AS51', d: 'ASX 200' },
             { s: 'INDEX:TWII', d: 'Taiwan Weighted' },
-            { s: 'INDEX:KS11', d: 'KOSPI' }
+            { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' },
+            { s: 'FOREXCOM:NSXUSD', d: 'Nasdaq 100' },
+            { s: 'FOREXCOM:DJI', d: 'Dow 30' }
           ],
           originalTitle: 'Asia'
         },
@@ -178,21 +178,21 @@ function Resources() {
             { s: 'OANDA:XAUUSD', d: 'Gold' },
             { s: 'OANDA:XAGUSD', d: 'Silver' },
             { s: 'CL1!', d: 'Crude Oil' },
-            { s: 'NG1!', d: 'Natural Gas' },
+            { s: 'FOREXCOM:DJI', d: 'Dow 30' },
             { s: 'ZC1!', d: 'Corn' },
-            { s: 'ZW1!', d: 'Wheat' }
+            { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' }
           ],
           originalTitle: 'Commodities'
         },
         {
           title: 'Bonds',
           symbols: [
-            { s: 'CME:GE1!', d: 'Eurodollar' },
-            { s: 'CBOT:ZB1!', d: 'T-Bond' },
-            { s: 'CBOT:UB1!', d: 'Ultra T-Bond' },
             { s: 'EUREX:FGBL1!', d: 'Euro Bund' },
             { s: 'EUREX:FBTP1!', d: 'Euro BTP' },
-            { s: 'EUREX:FGBM1!', d: 'Euro BOBL' }
+            { s: 'EUREX:FGBM1!', d: 'Euro BOBL' },
+            { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' },
+            { s: 'FOREXCOM:DJI', d: 'Dow 30' },
+            { s: 'INDEX:DEU30', d: 'DAX Index' }
           ],
           originalTitle: 'Bonds'
         }

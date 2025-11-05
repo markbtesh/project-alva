@@ -7,7 +7,7 @@
     "date": "2025-01-21",
     "intro": "Presidential action declaring a national energy emergency to address critical infrastructure and energy security needs.",
     "url": "https://www.whitehouse.gov/presidential-actions/2025/01/declaring-a-national-energy-emergency/",
-    "image": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/The_White_House_logo_under_Trump_2.0.jpg"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "date": "2025-07-24",
     "intro": "Comprehensive strategy for advancing artificial intelligence while ensuring safety, security, and American leadership in AI innovation.",
     "url": "https://www.whitehouse.gov/articles/2025/07/white-house-unveils-americas-ai-action-plan/",
-    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/The_White_House_logo_under_Trump_2.0.jpg"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "date": "2025-10-16",
     "intro": "Tech companies are constructing dedicated power facilities as data center energy demands surge, reshaping the energy landscape.",
     "url": "https://www.wsj.com/business/energy-oil/ai-data-centers-desperate-for-electricity-are-building-their-own-power-plants-291f5c81?mod=mhp",
-    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop"
+    "image": "https://images.wsj.net/im-78676375?width=800&height=600"
   },
   {
     "id": 4,
@@ -37,6 +37,6 @@
     "date": "2025-02-05",
     "intro": "New research projects unprecedented growth in power consumption driven by artificial intelligence infrastructure and computing needs.",
     "url": "https://www.goldmansachs.com/insights/articles/ai-to-drive-165-increase-in-data-center-power-demand-by-2030",
-    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop"
+    "image": "https://www.goldmansachs.com/images/insights/articles/ai-to-drive-165-increase-in-data-center-power-demand-by-2030/DataCenters16x9.jpg"
   }
 ]
