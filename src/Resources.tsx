@@ -65,17 +65,21 @@ function Resources() {
 
   // Load TradingView widget
   useEffect(() => {
-    if (!tradingViewRef.current) return;
-
-    const container = tradingViewRef.current;
+    if (!isAuthenticated) return; // Only load widget when authenticated
     
-    // Clear any existing widget content
+    const container = tradingViewRef.current;
+    if (!container) return;
+    
+    // Clear container first
     container.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
     
+    // Create and configure script
     const script = document.createElement('script');
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
     script.async = true;
-    script.innerHTML = JSON.stringify({
+    script.type = 'text/javascript';
+    
+    const widgetConfig = {
       colorTheme: 'light',
       dateRange: '12M',
       showChart: true,
@@ -108,18 +112,18 @@ function Resources() {
           ],
           originalTitle: 'Market'
         },
-          {
-            title: 'Futures',
-            symbols: [
-              { s: 'ES1!', d: 'E-Mini S&P 500' },
-              { s: 'NQ1!', d: 'E-Mini Nasdaq' },
-              { s: 'YM1!', d: 'E-Mini Dow' },
-              { s: 'CL1!', d: 'Crude Oil' },
-              { s: 'GC1!', d: 'Gold' },
-              { s: 'NG1!', d: 'Natural Gas' }
-            ],
-            originalTitle: 'Futures'
-          },
+        {
+          title: 'Futures',
+          symbols: [
+            { s: 'ES1!', d: 'E-Mini S&P 500' },
+            { s: 'NQ1!', d: 'E-Mini Nasdaq' },
+            { s: 'YM1!', d: 'E-Mini Dow' },
+            { s: 'CL1!', d: 'Crude Oil' },
+            { s: 'GC1!', d: 'Gold' },
+            { s: 'NG1!', d: 'Natural Gas' }
+          ],
+          originalTitle: 'Futures'
+        },
         {
           title: 'Crypto',
           symbols: [
@@ -168,18 +172,18 @@ function Resources() {
           ],
           originalTitle: 'Forex'
         },
-          {
-            title: 'Commodities',
-            symbols: [
-              { s: 'OANDA:XAUUSD', d: 'Gold' },
-              { s: 'OANDA:XAGUSD', d: 'Silver' },
-              { s: 'CL1!', d: 'Crude Oil' },
-              { s: 'NG1!', d: 'Natural Gas' },
-              { s: 'ZC1!', d: 'Corn' },
-              { s: 'ZW1!', d: 'Wheat' }
-            ],
-            originalTitle: 'Commodities'
-          },
+        {
+          title: 'Commodities',
+          symbols: [
+            { s: 'OANDA:XAUUSD', d: 'Gold' },
+            { s: 'OANDA:XAGUSD', d: 'Silver' },
+            { s: 'CL1!', d: 'Crude Oil' },
+            { s: 'NG1!', d: 'Natural Gas' },
+            { s: 'ZC1!', d: 'Corn' },
+            { s: 'ZW1!', d: 'Wheat' }
+          ],
+          originalTitle: 'Commodities'
+        },
         {
           title: 'Bonds',
           symbols: [
@@ -193,17 +197,20 @@ function Resources() {
           originalTitle: 'Bonds'
         }
       ]
-    });
-
+    };
+    
+    script.innerHTML = JSON.stringify(widgetConfig);
     container.appendChild(script);
 
     return () => {
-      // Cleanup - remove all scripts from container
-      const scripts = container.querySelectorAll('script');
-      scripts.forEach(s => s.remove());
-      container.innerHTML = '';
+      // Cleanup
+      if (container) {
+        const scripts = container.querySelectorAll('script');
+        scripts.forEach(s => s.remove());
+        container.innerHTML = '';
+      }
     };
-  }, []);
+  }, [isAuthenticated]);
 
   // Close menu when clicking outside
   useEffect(() => {
