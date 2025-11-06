@@ -83,7 +83,7 @@ function Leadership() {
       name: 'Hanna Ashlag',
       title: 'Director in Finance & Administration',
       image: '/Headshots/hanna_ashlag.jpg',
-      bio: 'Hanna serves as Director of Finance and Administration, operating as a strategic partner to the founders and executive team. With seven years of experience including financial and multifaceted oversight spanning finance, coordination, and strategic forecasting where she managed multi-million-dollar budgets for high-rise and infrastructure projects, she brings proven expertise in financial stewardship and organizational administration. Ashlag coordinates cross-functional initiatives, ensures alignment between strategic vision and execution, and maintains rigorous financial controls. She provides critical oversight of corporate operations while serving as a trusted advisor on matters from strategic partnerships to resource allocation. Her role requires exceptional discretion and the ability to navigate complex organizational dynamics. She pursues continuing education in corporate and business finance.'
+      bio: 'Hanna brings 7 years of experience serving as Director of Finance and Administration, operating as a strategic partner to the founders and executive team. Her experience includes financial and multifaceted oversight spanning finance, coordination, and strategic forecasting where she managed multi-million-dollar budgets for high-rise and infrastructure projects, bringing proven expertise in financial stewardship and organizational administration. Ashlag coordinates cross-functional initiatives, ensures alignment between strategic vision and execution, and maintains rigorous financial controls. She pursues continuing education in corporate and business finance and maintains active certifications in specialized accounting practices.'
     }
   ];
 
@@ -139,7 +139,7 @@ function Leadership() {
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-outfit font-medium transition-all duration-200 border-t border-gray-200"
                   >
-                    Resources
+                    Resource Center
                   </Link>
                   <Link
                     to="/login"
@@ -279,7 +279,7 @@ function Leadership() {
       <footer className="bg-gray-50 border-t border-gray-200 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-gray-500 text-sm font-outfit font-light">
-            All rights reserved.
+          @ 2025 ALVA Power. All Rights Reserved.
           </p>
         </div>
       </footer>

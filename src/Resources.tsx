@@ -258,7 +258,7 @@ function Resources() {
               className="h-12 w-auto mx-auto mb-6"
             />
             <h1 className="text-3xl font-bold text-[#DFFFDF] font-outfit mb-2">
-              Protected Resources
+              Protected Resource Center
             </h1>
             <p className="text-gray-400 font-outfit">
               Please enter the password to access Market Watch
@@ -384,7 +384,7 @@ function Resources() {
 
       {/* Section 1: Live Market Data */}
       <section className="max-w-7xl mx-auto px-6 py-8 mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 font-outfit mb-6">Live Market Data</h2>
+        <h2 className="text-3xl font-bold text-gray-900 font-outfit mb-6">Live Market Watch</h2>
         <div className="bg-gray-50 rounded-lg border border-gray-200 p-6 min-h-[400px]">
           {/* TradingView Market Overview Widget */}
           <div className="w-full h-full">
@@ -472,7 +472,13 @@ function Resources() {
       </section>
 
       {/* Footer Spacing */}
-      <div className="h-16"></div>
+      <footer className="bg-gray-50 border-t border-gray-200 py-12">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-gray-500 text-sm font-outfit font-light">
+          @ 2025 ALVA Power. All Rights Reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
