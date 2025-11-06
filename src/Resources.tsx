@@ -115,11 +115,11 @@ function Resources() {
         {
           title: 'Futures',
           symbols: [
-            { s: 'ES1!', d: 'E-Mini S&P 500' },
-            { s: 'NQ1!', d: 'E-Mini Nasdaq' },
+            { s: 'FOREXCOM:SPXUSD', d: 'E-Mini S&P 500' },
+            { s: 'FOREXCOM:NSXUSD', d: 'E-Mini Nasdaq' },
             { s: 'FOREXCOM:DJI', d: 'Dow 30' },
-            { s: 'CL1!', d: 'Crude Oil' },
-            { s: 'NGZ2025', d: 'Natural Gas' },
+            { s: 'TVC:USOIL', d: 'Crude Oil' },
+            { s: 'OANDA:NATGASUSD', d: 'Natural Gas' },
             { s: 'OANDA:XAUUSD', d: 'Gold' }
           ],
           originalTitle: 'Futures'
@@ -177,9 +177,9 @@ function Resources() {
           symbols: [
             { s: 'OANDA:XAUUSD', d: 'Gold' },
             { s: 'OANDA:XAGUSD', d: 'Silver' },
-            { s: 'CL1!', d: 'Crude Oil' },
-            { s: 'XNGUSD', d: 'Natural Gas' },
-            { s: 'ZC1!', d: 'Corn' },
+            { s: 'TVC:USOIL', d: 'Crude Oil' },
+            { s: 'OANDA:NATGASUSD', d: 'Natural Gas' },
+            { s: 'OANDA:CORNUSD', d: 'Corn' },
             { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' }
           ],
           originalTitle: 'Commodities'
