@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useRef, FormEvent } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import articlesData from './articles.json';
 
 interface Article {
@@ -14,39 +14,11 @@ interface Article {
 }
 
 function Resources() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isChecking, setIsChecking] = useState(true);
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [articles, setArticles] = useState<Article[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
   const tradingViewRef = useRef<HTMLDivElement>(null);
-
-  const CORRECT_PASSWORD = 'alva2025';
-
-  // Check authentication status on mount
-  useEffect(() => {
-    const authStatus = sessionStorage.getItem('alva_resources_authenticated');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-    }
-    setIsChecking(false);
-  }, []);
-
-  const handlePasswordSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setPasswordError('');
-    
-    if (password === CORRECT_PASSWORD) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('alva_resources_authenticated', 'true');
-    } else {
-      setPasswordError('Incorrect password. Please try again.');
-      setPassword('');
-    }
-  };
 
   useEffect(() => {
     // Sort articles by date (newest first) and set state
@@ -65,8 +37,6 @@ function Resources() {
 
   // Load TradingView widget
   useEffect(() => {
-    if (!isAuthenticated) return; // Only load widget when authenticated
-    
     const container = tradingViewRef.current;
     if (!container) return;
     
@@ -210,7 +180,7 @@ function Resources() {
         container.innerHTML = '';
       }
     };
-  }, [isAuthenticated]);
+  }, []);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -237,80 +207,6 @@ function Resources() {
       day: 'numeric' 
     });
   };
-
-  // Show password gate if not authenticated
-  if (isChecking) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-gray-600 font-outfit">Loading...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-6">
-        <div className="max-w-md w-full">
-          <div className="text-center mb-8">
-            <img
-              src="/alva-white.svg"
-              alt="ALVA logo"
-              className="h-12 w-auto mx-auto mb-6"
-            />
-            <h1 className="text-3xl font-bold text-[#DFFFDF] font-outfit mb-2">
-              Protected Resource Center
-            </h1>
-            <p className="text-gray-400 font-outfit">
-              Please enter the password to access Market Watch
-            </p>
-          </div>
-
-          <form onSubmit={handlePasswordSubmit} className="bg-gray-900/50 backdrop-blur-sm border border-[#DFFFDF]/20 rounded-lg p-8 shadow-xl">
-            <div className="mb-6">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-[#DFFFDF] mb-2 font-outfit"
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-black/50 border border-[#DFFFDF]/30 rounded-lg text-[#DFFFDF] font-outfit focus:outline-none focus:ring-2 focus:ring-[#DFFFDF]/50 focus:border-[#DFFFDF]/50 transition-all"
-                placeholder="Enter password"
-                autoFocus
-              />
-            </div>
-
-            {passwordError && (
-              <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-sm font-outfit">
-                {passwordError}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={!password}
-              className="w-full py-3 bg-[#DFFFDF] text-black font-semibold rounded-lg hover:bg-[#AFFF6E] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-outfit"
-            >
-              Enter
-            </button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <Link
-              to="/"
-              className="text-gray-400 hover:text-[#DFFFDF] text-sm font-outfit transition-colors"
-            >
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={`min-h-screen bg-white ${isVisible ? 'page-fade-in' : 'opacity-0'}`}>
