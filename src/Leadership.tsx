@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 function Leadership() {
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedLeader, setSelectedLeader] = useState<number | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,36 +35,55 @@ function Leadership() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMenuOpen]);
+
+  // Close modal on Escape key and lock body scroll
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && selectedLeader !== null) {
+        setSelectedLeader(null);
+      }
+    };
+
+    if (selectedLeader !== null) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [selectedLeader]);
   const leaders = [
     {
       name: 'William Clapp',
-      title: 'Founder & Chief Executive Officer',
+      title: 'Founder & CEO',
       image: '/Headshots/1_will-clapp.png',
-      bio: '20+ years energy sector leadership, pioneered Bone Springs drilling, Former US Army Ranger in the 75th Ranger Regiments, JD - Seattle University School of Law, BA - Texas Tech.'
+      bio: 'William has over 23 years of experience in energy infrastructure development and a proven track record of multi-billion dollar project execution. He pioneered the first well in the Bone Springs formation and developed proprietary technical IP to identify major plays in U.S. basins. Will has deployed over 5GW of power generation capacity globally and established strong relationships with leading investment firms. His innovative financial strategies and large acquisitions have positioned at the forefront of the AI power race. Will holds a Juris Doctor and graduated magna cum laude from Texas Tech University. He also served with the United States Special Operations Force as part of the 75th Ranger Regiments.'
     },
     {
       name: 'Sam Feder',
       title: 'Founder & Chief Strategy Officer',
       image: '/Headshots/sam_feder_5.jpeg',
-      bio: '14+ Years leading 150+ major infrastructure projects. NYC high-rise mechanical systems expert, multiple venture exits'
+      bio: 'Sam has over 14 years of experience in the industrial and finance management sectors, specializing in large-scale infrastructure development with advanced technology implementation, software management systems, proven expertise in mechanical design, large-scale demand systems, and utility service installations serving millions of users. As the founder of multiple successful companies, he has successfully delivered over 150 major projects across industrial, commercial, and government sectors. Sam\'s technical expertise, combined with a proven track record of industrial development execution, technology implementation, extensive background in finance, regulatory compliance, and business leadership has facilitated his ability to foster growth and operational excellence throughout diverse sectors, establishing as an industry leader. He holds master-level trade certifications and specialized training spanning mechanical systems, utility infrastructure, and safety compliance.'
     },
     {
       name: 'Will Latta',
       title: 'Chief Power Officer',
       image: '/Headshots/will_latta.jpeg',
-      bio: '30 years power generation experience. Founded $100M energy firms. MBA - Duke, Professional Engineer.'
+      bio: 'Will Latta has 25 years of experience with a proven track record of building successful teams and companies in the energy sector. He founded and led LP Amina, an environmental engineering firm that provided turnkey services to clients in the US and China. Latta also held various leadership positions at Alstom Power, including Director of Product Engineering and Director of Six Sigma. He successfully completed over 70 power plant projects and received multiple industry awards. Latta holds an MBA from Duke University and a Bachelor\'s degree in Mechanical Engineering from Georgia Institute of Technology.'
     },
     {
       name: 'Avi Huberfeld',
       title: 'Chief Financial Officer',
       image: '/Headshots/avi-h.jpg',
-      bio: 'Former investor at Millennium Management, 9+ years public markets expertise. BS - Yeshiva University.'
+      bio: 'Avi brings 9+ years of sophisticated financial expertise with a distinguished track record in public markets investment and portfolio management. As a former Investment Analyst at Millennium Management, he\'s developed deep expertise in risk assessment and strategic capital allocation across diverse market conditions with particular focus on energy and power sectors. Huberfeld\'s experience spans multiple asset classes and market cycles, providing him with the strategic perspective essential for driving financial performance in high-growth energy infrastructure ventures. He holds a Bachelor of Science degree from Yeshiva University with concentrations in finance and quantitative analysis.'
     },
     {
       name: 'Hanna Ashlag',
-      title: 'Director of Finance & Administration',
+      title: 'Director in Finance & Administration',
       image: '/Headshots/hanna_ashlag.jpg',
-      bio: 'Strategic operations leader with 7 years cross-functional management in industrial project & executive partnerships.'
+      bio: 'Hanna serves as Director of Finance and Administration, operating as a strategic partner to the founders and executive team. With seven years of experience including financial and multifaceted oversight spanning finance, coordination, and strategic forecasting where she managed multi-million-dollar budgets for high-rise and infrastructure projects, she brings proven expertise in financial stewardship and organizational administration. Ashlag coordinates cross-functional initiatives, ensures alignment between strategic vision and execution, and maintains rigorous financial controls. She provides critical oversight of corporate operations while serving as a trusted advisor on matters from strategic partnerships to resource allocation. Her role requires exceptional discretion and the ability to navigate complex organizational dynamics. She pursues continuing education in corporate and business finance.'
     }
   ];
 
@@ -158,7 +179,8 @@ function Leadership() {
           {leaders.map((leader, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
+              onClick={() => setSelectedLeader(index)}
+              className="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col cursor-pointer"
             >
               {/* Image Container */}
               <div className="relative overflow-hidden bg-gray-100 aspect-[4/5] flex-shrink-0">
@@ -171,16 +193,19 @@ function Leadership() {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex-grow flex flex-col transition-transform duration-300 group-hover:-translate-y-4">
+              <div className="p-6 flex-grow flex flex-col">
                 <h3 className="text-2xl font-outfit font-semibold text-gray-900 mb-2">
                   {leader.name}
                 </h3>
                 <p className="text-gray-600 font-outfit font-medium text-sm mb-4 leading-relaxed">
                   {leader.title}
                 </p>
-                <p className="text-gray-500 font-outfit font-light text-sm leading-relaxed flex-grow overflow-hidden max-h-0 opacity-0 group-hover:max-h-96 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                <p className="text-gray-500 font-outfit font-light text-sm leading-relaxed line-clamp-3">
                   {leader.bio}
                 </p>
+                <button className="mt-4 text-blue-600 font-outfit font-medium text-sm hover:text-blue-700 transition-colors">
+                  Read more →
+                </button>
               </div>
 
               {/* Decorative accent */}
@@ -189,6 +214,66 @@ function Leadership() {
           ))}
         </div>
       </div>
+
+      {/* Bio Modal - Rendered via Portal */}
+      {selectedLeader !== null && createPortal(
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-6 animate-fade-in"
+          onClick={() => setSelectedLeader(null)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-8 py-6 flex items-center justify-between z-10 rounded-t-2xl">
+              <div>
+                <h2 className="text-3xl font-outfit font-bold text-gray-900 mb-1">
+                  {leaders[selectedLeader].name}
+                </h2>
+                <p className="text-gray-600 font-outfit font-medium">
+                  {leaders[selectedLeader].title}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedLeader(null)}
+                className="w-10 h-10 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 flex items-center justify-center transition-colors"
+                aria-label="Close"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-700"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="px-8 py-8">
+              <div className="flex flex-col md:flex-row gap-8 mb-8">
+                <div className="md:w-1/3 flex-shrink-0">
+                  <div className="aspect-[3/4] rounded-xl shadow-lg overflow-hidden bg-gray-100">
+                    <img
+                      src={leaders[selectedLeader].image}
+                      alt={leaders[selectedLeader].name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="md:w-2/3">
+                  <p className="text-gray-700 font-outfit font-light text-base leading-relaxed">
+                    {leaders[selectedLeader].bio}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-200 py-12">

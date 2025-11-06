@@ -119,8 +119,8 @@ function Resources() {
             { s: 'NQ1!', d: 'E-Mini Nasdaq' },
             { s: 'FOREXCOM:DJI', d: 'Dow 30' },
             { s: 'CL1!', d: 'Crude Oil' },
-            { s: 'OANDA:XAUUSD', d: 'Gold' },
-            { s: 'OANDA:XAGUSD', d: 'Silver' }
+            { s: 'NGZ2025', d: 'Natural Gas' },
+            { s: 'OANDA:XAUUSD', d: 'Gold' }
           ],
           originalTitle: 'Futures'
         },
@@ -178,7 +178,7 @@ function Resources() {
             { s: 'OANDA:XAUUSD', d: 'Gold' },
             { s: 'OANDA:XAGUSD', d: 'Silver' },
             { s: 'CL1!', d: 'Crude Oil' },
-            { s: 'FOREXCOM:DJI', d: 'Dow 30' },
+            { s: 'XNGUSD', d: 'Natural Gas' },
             { s: 'ZC1!', d: 'Corn' },
             { s: 'FOREXCOM:SPXUSD', d: 'S&P 500' }
           ],
