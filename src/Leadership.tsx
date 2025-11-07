@@ -75,9 +75,9 @@ function Leadership() {
     },
     {
       name: 'Avi Huberfeld',
-      title: 'Chief Financial Officer',
+      title: 'President',
       image: '/Headshots/avi-h.jpg',
-      bio: 'Avi brings 9+ years of sophisticated financial expertise with a distinguished track record in public markets investment and portfolio management. As a former Investment Analyst at Millennium Management, he\'s developed deep expertise in risk assessment and strategic capital allocation across diverse market conditions with particular focus on energy and power sectors. Huberfeld\'s experience spans multiple asset classes and market cycles, providing him with the strategic perspective essential for driving financial performance in high-growth energy infrastructure ventures. He holds a Bachelor of Science degree from Yeshiva University with concentrations in finance and quantitative analysis.'
+      bio: 'Avi brings 9+ years of sophisticated financial expertise with a distinguished track record in public markets investment and portfolio management. As a former Investment Analyst at Millennium Management, he\'s developed deep expertise in risk assessment and strategic capital allocation across diverse market conditions with particular focus on energy and power sectors. Huberfeld\'s experience spans multiple asset classes and market cycles, providing him with the strategic perspective essential for driving financial performance in high-growth energy infrastructure ventures. He holds a Bachelor of Science degree from Yeshiva University with concentrations in finance.'
     },
     {
       name: 'Hanna Ashlag',
