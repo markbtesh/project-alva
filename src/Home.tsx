@@ -114,13 +114,6 @@ function Home() {
                   >
                     Resource Center
                   </Link>
-                  <Link
-                    to="/login"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 text-[#DFFFDF] hover:text-[#AFFF6E] hover:bg-[#DFFFDF]/10 font-outfit font-medium transition-all duration-200 border-t border-[#DFFFDF]/10"
-                  >
-                    Login
-                  </Link>
                   <a
                     href="https://wtssynergy.com"
                     target="_blank"
@@ -128,8 +121,15 @@ function Home() {
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-3 text-[#DFFFDF] hover:text-[#AFFF6E] hover:bg-[#DFFFDF]/10 font-outfit font-medium transition-all duration-200 border-t border-[#DFFFDF]/10"
                   >
-                    WTS Synergy
+                    A WTS company
                   </a>
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-3 text-[#DFFFDF] hover:text-[#AFFF6E] hover:bg-[#DFFFDF]/10 font-outfit font-medium transition-all duration-200 border-t border-[#DFFFDF]/10"
+                  >
+                    Login
+                  </Link>
                 </div>
               )}
             </div>
