@@ -262,13 +262,6 @@ function Resources() {
                   >
                     Leadership
                   </Link>
-                  <Link
-                    to="/login"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 text-gray-700 hover:bg-gray-50 font-outfit font-medium transition-all duration-200 border-t border-gray-200"
-                  >
-                    Login
-                  </Link>
                   <a
                     href="https://wtssynergy.com"
                     target="_blank"
@@ -276,8 +269,15 @@ function Resources() {
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-3 text-gray-700 hover:bg-gray-50 font-outfit font-medium transition-all duration-200 border-t border-gray-200"
                   >
-                    WTS Synergy
+                    A WTS Company
                   </a>
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-3 text-gray-700 hover:bg-gray-50 font-outfit font-medium transition-all duration-200 border-t border-gray-200"
+                  >
+                    Login
+                  </Link>
                 </div>
               )}
             </div>
@@ -380,7 +380,7 @@ function Resources() {
       <footer className="bg-gray-50 border-t border-gray-200 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-gray-500 text-sm font-outfit font-light">
-          @ 2025 ALVA Power. All Rights Reserved. A WTS company
+          © 2025 ALVA Power. All Rights Reserved. A WTS company
           </p>
         </div>
       </footer>

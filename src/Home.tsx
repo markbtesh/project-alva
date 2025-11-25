@@ -121,7 +121,7 @@ function Home() {
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-3 text-[#DFFFDF] hover:text-[#AFFF6E] hover:bg-[#DFFFDF]/10 font-outfit font-medium transition-all duration-200 border-t border-[#DFFFDF]/10"
                   >
-                    A WTS company
+                    A WTS Company
                   </a>
                   <Link
                     to="/login"
@@ -266,7 +266,7 @@ function Home() {
             )}
           </form>
           <p className="text-center absolute -bottom-28 left-0 right-0 text-[#3d3d3d] text-sm font-outfit font-light tracking-wide z-10">
-          @ 2025 ALVA Power. All Rights Reserved. A WTS company
+          © 2025 ALVA Power. All Rights Reserved. A WTS company
         </p>
         </div>
 
