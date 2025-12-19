@@ -74,12 +74,6 @@ function Leadership() {
       bio: 'Will Latta has 25 years of experience with a proven track record of building successful teams and companies in the energy sector. He founded and led LP Amina, an environmental engineering firm that provided turnkey services to clients in the US and China. Latta also held various leadership positions at Alstom Power, including Director of Product Engineering and Director of Six Sigma. He successfully completed over 70 power plant projects and received multiple industry awards. Latta holds an MBA from Duke University and a Bachelor\'s degree in Mechanical Engineering from Georgia Institute of Technology.'
     },
     {
-      name: 'Avi Huberfeld',
-      title: 'President',
-      image: '/Headshots/avi-h.jpg',
-      bio: 'Avi brings 9+ years of sophisticated financial expertise with a distinguished track record in public markets investment and portfolio management. As a former Investment Analyst at Millennium Management, he\'s developed deep expertise in risk assessment and strategic capital allocation across diverse market conditions with particular focus on energy and power sectors. Huberfeld\'s experience spans multiple asset classes and market cycles, providing him with the strategic perspective essential for driving financial performance in high-growth energy infrastructure ventures. He holds a Bachelor of Science degree from Yeshiva University with concentrations in finance.'
-    },
-    {
       name: 'Hanna Ashlag',
       title: 'Director in Finance & Administration',
       image: '/Headshots/hanna_ashlag.jpg',
@@ -184,7 +178,7 @@ function Leadership() {
 
       {/* Leadership Grid */}
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {leaders.map((leader, index) => (
             <div
               key={index}
