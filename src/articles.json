@@ -1,6 +1,16 @@
 [
   {
     "id": 1,
+    "title": "Data Centers Are Asked to Bring Own Power Generation or Shut Down",
+    "publication": "OilPrice.com",
+    "author": "Tsvetana Paraskova",
+    "date": "2026-01-08",
+    "intro": "U.S. power grids are struggling with surging data center demand, forcing grid operators to require data centers to either provide their own power generation or agree to disconnect during peak demand periods to maintain grid reliability.",
+    "url": "https://oilprice.com/Energy/Energy-General/Data-Centers-Are-Asked-to-Bring-Own-Power-Generation-or-Shut-Down.html",
+    "image": "https://d32r1sh890xpii.cloudfront.net/article/718x300/2026-01-08_dv6xfj8zac.jpg"
+  },
+  {
+    "id": 2,
     "title": "Declaring a National Energy Emergency",
     "publication": "The White House",
     "author": "The White House",
@@ -10,7 +20,7 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/The_White_House_logo_under_Trump_2.0.jpg"
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "White House Unveils America's AI Action Plan",
     "publication": "The White House",
     "author": "The White House",
@@ -20,7 +30,7 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/The_White_House_logo_under_Trump_2.0.jpg"
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "AI Data Centers Desperate for Electricity Are Building Their Own Power Plants",
     "publication": "The Wall Street Journal",
     "author": "WSJ Staff",
@@ -30,7 +40,7 @@
     "image": "https://images.wsj.net/im-78676375?width=800&height=600"
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "AI to Drive 165% Increase in Data Center Power Demand by 2030",
     "publication": "Goldman Sachs",
     "author": "Goldman Sachs Research",
