@@ -262,6 +262,7 @@ function Resources() {
                   >
                     Leadership
                   </Link>
+                  
                   <a
                     href="https://wtssynergy.com"
                     target="_blank"
@@ -271,6 +272,13 @@ function Resources() {
                   >
                     A WTS Company
                   </a>
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-3 text-gray-700 hover:bg-gray-50 font-outfit font-medium transition-all duration-200 border-t border-gray-200"
+                  >
+                    Contact
+                  </Link>
                   <Link
                     to="/login"
                     onClick={() => setIsMenuOpen(false)}
