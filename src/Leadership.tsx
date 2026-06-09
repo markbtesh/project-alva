@@ -57,13 +57,13 @@ function Leadership() {
   const leaders = [
     {
       name: 'William Clapp',
-      title: 'Founder & CEO',
+      title: 'Co-Founder & Chief Executive Officer',
       image: '/Headshots/1_will-clapp.png',
       bio: 'William has over 23 years of experience in energy infrastructure development and a proven track record of multi-billion dollar project execution. He pioneered the first well in the Bone Springs formation and developed proprietary technical IP to identify major plays in U.S. basins. Will has deployed over 5GW of power generation capacity globally and established strong relationships with leading investment firms. His innovative financial strategies and large acquisitions have positioned at the forefront of the AI power race. Will holds a Juris Doctor and graduated magna cum laude from Texas Tech University. He also served with the United States Special Operations Force as part of the 75th Ranger Regiments.'
     },
     {
       name: 'Sam Feder',
-      title: 'Founder & Chief Strategy Officer',
+      title: 'Co-Founder & Chief Strategy Officer',
       image: '/Headshots/sam_feder_5.jpeg',
       bio: 'Sam has over 14 years of experience in the industrial and finance management sectors, specializing in large-scale infrastructure development with advanced technology implementation, software management systems, proven expertise in mechanical design, large-scale demand systems, and utility service installations serving millions of users. As the founder of multiple successful companies, he has successfully delivered over 150 major projects across industrial, commercial, and government sectors. Sam\'s technical expertise, combined with a proven track record of industrial development execution, technology implementation, extensive background in finance, regulatory compliance, and business leadership has facilitated his ability to foster growth and operational excellence throughout diverse sectors, establishing as an industry leader. He holds master-level trade certifications and specialized training spanning mechanical systems, utility infrastructure, and safety compliance.'
     },
